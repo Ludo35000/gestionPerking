@@ -7,7 +7,7 @@ package fr.eni.gestion_parking.bll;
  */
 public class BLLException extends Exception{
 
-    private BLLExceptionType exceptionType;
+    private final BLLExceptionType exceptionType;
 
     /**
      * Constructeur BLLException
@@ -42,14 +42,11 @@ public class BLLException extends Exception{
      */
     @Override
     public String getMessage() {
-        StringBuffer sb = new StringBuffer("Couche BLL - ");
-        sb.append(super.getMessage());
-
-        return sb.toString() ;
+        return "Couche BLL - " + super.getMessage();
     }
 
     /**
-     * Retourne le type de l'excpetion
+     * Retourne le type de l'exception
      * @return le type
      */
     public BLLExceptionType getExceptionType() {

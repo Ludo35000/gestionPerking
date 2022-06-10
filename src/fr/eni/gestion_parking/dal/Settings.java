@@ -31,7 +31,7 @@ public class Settings {
     }
 
     /**
-     * Retourne la valeur de la propriété associé à la clé
+     * Retourne la valeur de la propriété associée à la clé
      * @param key la clé
      * @return la valeur
      */

@@ -37,10 +37,7 @@ public class DALException extends Exception {
 	 */
 	@Override
 	public String getMessage() {
-		StringBuffer sb = new StringBuffer("Couche DAL - ");
-		sb.append(super.getMessage());
-		
-		return sb.toString() ;
+		return "Couche DAL - " + super.getMessage();
 	}
 	
 	

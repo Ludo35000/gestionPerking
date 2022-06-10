@@ -1,10 +1,8 @@
 package fr.eni.gestion_parking.bll;
 
-import fr.eni.gestion_parking.bo.Personne;
 import fr.eni.gestion_parking.bo.Voiture;
 import fr.eni.gestion_parking.dal.DALException;
 import fr.eni.gestion_parking.dal.DAOFactory;
-import fr.eni.gestion_parking.dal.PersonneDAO;
 import fr.eni.gestion_parking.dal.VoitureDAO;
 import fr.eni.gestion_parking.utils.MonLogger;
 
@@ -20,7 +18,7 @@ public class VoitureManager {
 
     private static final Logger logger = MonLogger.getLogger(VoitureManager.class.getSimpleName());
     private static volatile VoitureManager instance;
-    private VoitureDAO voitureDAO;
+    private final VoitureDAO voitureDAO;
 
     /**
      * Constructeur CatalogueManager
@@ -42,7 +40,7 @@ public class VoitureManager {
     /**
      * Retourne la liste des voitures
      * @return liste des voitures
-     * @throws BLLException
+     * @throws BLLException le DALException
      */
     public List<Voiture> getListVoiture() throws BLLException {
         try {
@@ -58,7 +56,7 @@ public class VoitureManager {
      * Ajoute une voiture
      * @param voiture la voiture à ajouter
      * @return la voiture ajoutée
-     * @throws BLLException
+     * @throws BLLException le DALException
      */
     public Voiture addVoiture(final Voiture voiture) throws BLLException {
         try {
@@ -68,7 +66,7 @@ public class VoitureManager {
             if (voiture.getId() != null) {
                 String error = "La voiture est déjà présente en base de données";
                 logger.severe(error);
-                throw new BLLException(error, BLLExceptionType.ERROR_VOITURE_PRESENTE_BASE);
+                throw new BLLException(error, BLLExceptionType.ERROR_VOITURE_PRESENT_BASE);
             }
 
             return voitureDAO.insert(voiture);
@@ -82,7 +80,7 @@ public class VoitureManager {
      * Modifier une voiture
      * @param voiture la voiture à modifier
      * @return la voiture modifier
-     * @throws BLLException
+     * @throws BLLException le DALException
      */
     public Voiture updateVoiture(final Voiture voiture) throws BLLException {
         try {
@@ -92,7 +90,7 @@ public class VoitureManager {
             if (voiture.getId() == null) {
                 String error = "La voiture n'est pas présente en base de données";
                 logger.severe(error);
-                throw new BLLException(error, BLLExceptionType.ERROR_VOITURE_NON_PRESENTE_BASE);
+                throw new BLLException(error, BLLExceptionType.ERROR_VOITURE_NON_PRESENT_BASE);
             }
 
             return voitureDAO.update(voiture);
@@ -106,7 +104,7 @@ public class VoitureManager {
      * Supprime une voiture
      * @param voiture la voiture a supprimer
      * @return true -> Supprimer; false -> Erreur
-     * @throws BLLException
+     * @throws BLLException le DALException
      */
     public boolean deleteVoiture(final Voiture voiture) throws BLLException {
         try {
@@ -116,7 +114,7 @@ public class VoitureManager {
             if (voiture.getId() == null) {
                 String error = "La voiture n'est pas présente en base de données";
                 logger.severe(error);
-                throw new BLLException(error, BLLExceptionType.ERROR_VOITURE_NON_PRESENTE_BASE);
+                throw new BLLException(error, BLLExceptionType.ERROR_VOITURE_NON_PRESENT_BASE);
             }
 
             return voitureDAO.delete(voiture);
@@ -129,17 +127,17 @@ public class VoitureManager {
     /**
      * Valide une voiture avant n'import quelle requête
      * @param voiture la voiture à valider
-     * @throws BLLException
+     * @throws BLLException le DALException
      */
     private void validerVoiture(Voiture voiture) throws BLLException {
         logger.info("VoitureManager --> validerVoiture");
         if (voiture.getNom() == null || voiture.getNom().isBlank()) {
-            String error = "Le nom d'une voiture ne peut pas être vide ou initilisé à rien";
+            String error = "Le nom d'une voiture ne peut pas être vide ou initialisée à rien";
             logger.severe(error);
             throw new BLLException(error, BLLExceptionType.ERROR_VOITURE_NOM_VIDE);
         }
         if (voiture.getPlaqueImmatriculation() == null || voiture.getPlaqueImmatriculation().isBlank()) {
-            String error = "La plaque d'immatriculation d'une voiture ne peut pas être vide ou initilisé à rien";
+            String error = "La plaque d'immatriculation d'une voiture ne peut pas être vide ou initialisée à rien";
             logger.severe(error);
             throw new BLLException(error, BLLExceptionType.ERROR_VOITURE_PLAQUE_VIDE);
         }

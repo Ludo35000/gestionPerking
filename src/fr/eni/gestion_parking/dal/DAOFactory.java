@@ -9,7 +9,7 @@ import fr.eni.gestion_parking.dal.jdbc.VoitureDAOJdbcImpl;
 public class DAOFactory {
 
     /**
-     * Retourne l'instance pour editer les voiture
+     * Retourne l'instance pour edite les voitures
      * @return l'instance
      */
     public static VoitureDAO getVoitureDao() {
@@ -17,7 +17,7 @@ public class DAOFactory {
     }
 
     /**
-     * Retourne l'instance pour editer les personnes
+     * Retourne l'instance pour éditer les personnes
      * @return l'instance
      */
     public static PersonneDAO getPersonneDao() {

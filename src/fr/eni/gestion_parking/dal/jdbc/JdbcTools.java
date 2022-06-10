@@ -13,17 +13,17 @@ import java.sql.SQLException;
  */
 public class JdbcTools {
 
-    private static String urlDb = "urlDb";
-    private static String userDb = "userDb";
-    private static String passwordDb = "passwordDb";
+    private static final String URL_DB = "urlDb";
+    private static final String USER_DB = "userDb";
+    private static final String PASSWORD_DB = "passwordDb";
 
     /**
      * Retourne la connexion à la base de données
      * @return la connexion
-     * @throws SQLException
+     * @throws SQLException l'exception
      */
     public static Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(Settings.getProperty(urlDb), Settings.getProperty(userDb), Settings.getProperty(passwordDb));
+        return DriverManager.getConnection(Settings.getProperty(URL_DB), Settings.getProperty(USER_DB), Settings.getProperty(PASSWORD_DB));
     }
 
 }

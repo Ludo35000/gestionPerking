@@ -25,7 +25,7 @@ public class PersonneDAOJdbcImpl implements PersonneDAO {
      * Ajouter une personne
      * @param personne la personne à ajouter
      * @return la nouvelle personne
-     * @throws DALException
+     * @throws DALException la DALException
      */
     @Override
     public Personne insert(final Personne personne) throws DALException {
@@ -55,9 +55,9 @@ public class PersonneDAOJdbcImpl implements PersonneDAO {
 
     /**
      * Modifier une personne
-     * @param personne la personner à modifier
-     * @return la personne modifié
-     * @throws DALException
+     * @param personne la personne à modifier
+     * @return la personne modifiée
+     * @throws DALException la DALException
      */
     @Override
     public Personne update(final Personne personne) throws DALException {
@@ -86,7 +86,7 @@ public class PersonneDAOJdbcImpl implements PersonneDAO {
      * Supprimer une personne
      * @param personne la personne à supprimer
      * @return true -> Supprimer; false -> Erreur
-     * @throws DALException
+     * @throws DALException la DALException
      */
     @Override
     public boolean delete(final Personne personne) throws DALException {
@@ -105,7 +105,7 @@ public class PersonneDAOJdbcImpl implements PersonneDAO {
     /**
      * Retourne toutes les personnes
      * @return la listes des personnes
-     * @throws DALException
+     * @throws DALException la DALException
      */
     @Override
     public List<Personne> selectAll() throws DALException {
@@ -114,9 +114,9 @@ public class PersonneDAOJdbcImpl implements PersonneDAO {
     }
 
     /**
-     * Retourne une personnes par id
+     * Retourne une personne par id
      * @return la personne
-     * @throws DALException
+     * @throws DALException la DALException
      */
     @Override
     public Personne selectById(int id) throws DALException {
@@ -142,8 +142,8 @@ public class PersonneDAOJdbcImpl implements PersonneDAO {
 
     /**
      * Retourne toutes les personnes sans voitures
-     * @return
-     * @throws DALException
+     * @return les personnes sans voitures
+     * @throws DALException la DALException
      */
     @Override
     public List<Personne> selectAllWithoutVoiture() throws DALException {
@@ -153,17 +153,17 @@ public class PersonneDAOJdbcImpl implements PersonneDAO {
     }
 
     /**
-     * execute custon select ALL
-     * @param requete La requete SQL
+     * execute custom select ALL
+     * @param request La requete SQL
      * @return la liste des personnes
-     * @throws DALException
+     * @throws DALException la DALException
      */
-    private List<Personne> customSelectAll(String requete) throws DALException {
+    private List<Personne> customSelectAll(String request) throws DALException {
         List<Personne> personnes = new ArrayList<>();
         logger.info("PersonneDAOJdbcImpl --> customSelectAll");
 
         try (Connection connection = JdbcTools.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(requete, Statement.RETURN_GENERATED_KEYS)){
+             PreparedStatement preparedStatement = connection.prepareStatement(request, Statement.RETURN_GENERATED_KEYS)){
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
@@ -180,8 +180,8 @@ public class PersonneDAOJdbcImpl implements PersonneDAO {
     /**
      * Créer une Personne depuis le resultSet
      * @param resultSet le resultSet
-     * @return la personnes
-     * @throws SQLException
+     * @return la personne
+     * @throws SQLException l'exception SQL
      */
     private Personne itemBuilder(ResultSet resultSet) throws SQLException {
         logger.info("PersonneDAOJdbcImpl --> itemBuilder");

@@ -16,7 +16,7 @@ public class MonLogger
 	public static ConsoleHandler ch = null;
 	
 	/**
-	 * Permet de récuperer un logger.
+	 * Permet de récupérer un logger.
 	 **/
 	public static Logger getLogger(String className)
 	{
@@ -36,11 +36,7 @@ public class MonLogger
 			{
 				fh = new FileHandler("beDeveloper.log");
 			}
-			catch (SecurityException e)
-			{
-				e.printStackTrace();
-			}
-			catch (IOException e)
+			catch (SecurityException | IOException e)
 			{
 				e.printStackTrace();
 			}

@@ -29,9 +29,9 @@ public class VoitureDAOJdbcImpl implements VoitureDAO {
 
     /**
      * Ajouter une voiture
-     * @param voiture la voiture à ajouer
+     * @param voiture la voiture à ajouter
      * @return la nouvelle voiture
-     * @throws DALException
+     * @throws DALException le DALException
      */
     @Override
     public Voiture insert(final Voiture voiture) throws DALException {
@@ -70,7 +70,7 @@ public class VoitureDAOJdbcImpl implements VoitureDAO {
      * Modifier une voiture
      * @param voiture la voiture à modifier
      * @return la voiture modifier
-     * @throws DALException
+     * @throws DALException le DALException
      */
     @Override
     public Voiture update(final Voiture voiture) throws DALException {
@@ -107,7 +107,7 @@ public class VoitureDAOJdbcImpl implements VoitureDAO {
      * Supprimer une voiture
      * @param voiture la voiture supprimer
      * @return true -> Supprimer; false -> Erreur
-     * @throws DALException
+     * @throws DALException le DALException
      */
     @Override
     public boolean delete(Voiture voiture) throws DALException {
@@ -124,9 +124,9 @@ public class VoitureDAOJdbcImpl implements VoitureDAO {
     }
 
     /**
-     * Retourne toutes les voiture
+     * Retourne toutes les voitures
      * @return la liste des voitures
-     * @throws DALException
+     * @throws DALException le DALException
      */
     @Override
     public List<Voiture> selectAll() throws DALException {
@@ -152,7 +152,7 @@ public class VoitureDAOJdbcImpl implements VoitureDAO {
      * Créer une voiture depuis le resultSet
      * @param resultSet le resultSet
      * @return la voiture
-     * @throws SQLException
+     * @throws SQLException l'exception SQL
      */
     private Voiture itemBuilder(ResultSet resultSet) throws SQLException, DALException {
         logger.info("VoitureDAOJdbcImpl --> itemBuilder");

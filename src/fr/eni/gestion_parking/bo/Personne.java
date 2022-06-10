@@ -30,7 +30,7 @@ public class Personne {
     }
 
     /**
-     * Chnage l'identifiant
+     * Change l'identifiant
      * @param id l'id
      */
     public void setId(Integer id) {
@@ -63,7 +63,7 @@ public class Personne {
 
     /**
      * Change le prénom
-     * @param prenom
+     * @param prenom le prénom
      */
     public void setPrenom(String prenom) {
         this.prenom = prenom;

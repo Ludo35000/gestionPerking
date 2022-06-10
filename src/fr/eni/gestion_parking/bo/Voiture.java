@@ -65,7 +65,7 @@ public class Voiture {
 
     /**
      * Change la plaque d'immatriculation
-     * @param plaqueImmatriculation la plaque d'immaticulation
+     * @param plaqueImmatriculation la plaque d'immatriculation
      */
     public void setPlaqueImmatriculation(String plaqueImmatriculation) {
         this.plaqueImmatriculation = plaqueImmatriculation;

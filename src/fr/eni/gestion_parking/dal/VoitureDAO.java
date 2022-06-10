@@ -13,9 +13,9 @@ public interface VoitureDAO {
 
     /**
      * Ajouter une voiture
-     * @param voiture la voiture à ajouer
+     * @param voiture la voiture à ajouter
      * @return la nouvelle voiture
-     * @throws DALException
+     * @throws DALException le DALException
      */
     Voiture insert(final Voiture voiture) throws DALException;
 
@@ -23,7 +23,7 @@ public interface VoitureDAO {
      * Modifier une voiture
      * @param voiture la voiture à modifier
      * @return la voiture modifier
-     * @throws DALException
+     * @throws DALException le DALException
      */
     Voiture update(final Voiture voiture) throws DALException;
 
@@ -31,14 +31,14 @@ public interface VoitureDAO {
      * Supprimer une voiture
      * @param voiture la voiture supprimer
      * @return true -> Supprimer; false -> Erreur
-     * @throws DALException
+     * @throws DALException le DALException
      */
     boolean delete(final Voiture voiture) throws DALException;
 
     /**
-     * Retourne toutes les voiture
+     * Retourne toutes les voitures
      * @return la liste des voitures
-     * @throws DALException
+     * @throws DALException le DALException
      */
     List<Voiture> selectAll() throws DALException;
 }

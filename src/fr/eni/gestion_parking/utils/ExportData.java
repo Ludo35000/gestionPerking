@@ -72,7 +72,7 @@ public class ExportData {
     /**
      * Export les données en CSV
      * @param voitureList la liste des voitures
-     * @param personneList la listes de perssonages sans voitures
+     * @param personneList la liste de personages sans voitures
      */
     public static void exportDataCsv(List<Voiture> voitureList, List<Personne> personneList) {
         StringBuilder sb = new StringBuilder();
@@ -122,7 +122,7 @@ public class ExportData {
     /**
      * Convert Personne en XML
      * @param doc le document
-     * @param parent l'element parent
+     * @param parent l'élément parent
      * @param personne la personne
      */
     private static void exportDataXmlPersonne(Document doc, Element parent, Personne personne) {
@@ -138,7 +138,7 @@ public class ExportData {
     /**
      * Convert Voiture en XML
      * @param doc le document
-     * @param parent l'element parent
+     * @param parent l'élément parent
      * @param voiture la voiture
      */
     private static void exportDataXmlVoiture(Document doc, Element parent, Voiture voiture) {
@@ -160,7 +160,7 @@ public class ExportData {
      * @param doc le document
      * @param id l'identifiant
      * @param nom le nom
-     * @param element l'element parent
+     * @param element l'élément parent
      */
     private static void constructHeaderXML(Document doc, Element parent, int id, String nom, Element element) {
         logger.info("ExportData --> constructHeaderXML");

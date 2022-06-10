@@ -13,7 +13,6 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
 
 import java.util.logging.Logger;
 
@@ -115,9 +114,8 @@ public class Controller {
 
     /**
      * Ajoute une nouvelle voiture
-     * @param mouseEvent l'action
      */
-    public void addNewVoiture(MouseEvent mouseEvent) {
+    public void addNewVoiture() {
         logger.info("Controller --> addNewVoiture");
         removeError();
         Voiture newVoiture = new Voiture(textFieldVoitureNom.getText(), textFieldVotiruePlaque.getText());
@@ -135,9 +133,8 @@ public class Controller {
 
     /**
      * Modifie la voiture
-     * @param mouseEvent l'action
      */
-    public void editVoiture(MouseEvent mouseEvent) {
+    public void editVoiture() {
         logger.info("Controller --> editVoiture");
         removeError();
 
@@ -159,9 +156,8 @@ public class Controller {
 
     /**
      * Supprime la voiture
-     * @param mouseEvent
      */
-    public void deleteVoiture(MouseEvent mouseEvent) {
+    public void deleteVoiture() {
         logger.info("Controller --> initialize");
         removeError();
 
@@ -180,9 +176,8 @@ public class Controller {
 
     /**
      * Ajouter une nouvelle personne
-     * @param mouseEvent l'action
      */
-    public void addNewPersonne(MouseEvent mouseEvent) {
+    public void addNewPersonne() {
         logger.info("Controller --> addNewPersonne");
         removeError();
 
@@ -200,9 +195,8 @@ public class Controller {
 
     /**
      * Modifie une personne
-     * @param mouseEvent l'action
      */
-    public void editPersonne(MouseEvent mouseEvent) {
+    public void editPersonne() {
         logger.info("Controller --> editPersonne");
         removeError();
 
@@ -223,9 +217,8 @@ public class Controller {
 
     /**
      * Supprimer une personne
-     * @param mouseEvent l'action
      */
-    public void deletePersonne(MouseEvent mouseEvent) {
+    public void deletePersonne() {
         logger.info("Controller --> deletePersonne");
         removeError();
 
@@ -243,9 +236,8 @@ public class Controller {
 
     /**
      * Export les données en XML
-     * @param mouseEvent l'action
      */
-    public void exportDataXml(MouseEvent mouseEvent) {
+    public void exportDataXml() {
         logger.info("Controller --> exportDataXml");
         try {
             ExportData.exportDataXml(voitureManager.getListVoiture(), personneManager.getListPersonneWithoutVoiture());
@@ -257,9 +249,8 @@ public class Controller {
 
     /**
      * Export les données en CSV
-     * @param mouseEvent l'action
      */
-    public void exportDataExcel(MouseEvent mouseEvent) {
+    public void exportDataExcel() {
         logger.info("Controller --> exportDataExcel");
         try {
             ExportData.exportDataCsv(voitureManager.getListVoiture(), personneManager.getListPersonneWithoutVoiture());
@@ -297,10 +288,10 @@ public class Controller {
             case ERROR_PERSONNE_ASSOCIE_VOITURE:
                 setError(errorLabelPersonnePrenom, "La personne est associé à au moins une voiture");
                 break;
-            case ERROR_VOITURE_PRESENTE_BASE:
-            case ERROR_VOITURE_NON_PRESENTE_BASE:
-            case ERROR_PERSONNE_PRESENTE_BASE:
-            case ERROR_PERSONNE_NON_PRESENTE_BASE:
+            case ERROR_VOITURE_PRESENT_BASE:
+            case ERROR_VOITURE_NON_PRESENT_BASE:
+            case ERROR_PERSONNE_PRESENT_BASE:
+            case ERROR_PERSONNE_NON_PRESENT_BASE:
             case OTHER:
             default:
                 break;

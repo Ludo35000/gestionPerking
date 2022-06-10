@@ -1,7 +1,6 @@
 package fr.eni.gestion_parking.bll;
 
 import fr.eni.gestion_parking.bo.Personne;
-import fr.eni.gestion_parking.bo.Voiture;
 import fr.eni.gestion_parking.dal.DALException;
 import fr.eni.gestion_parking.dal.DAOFactory;
 import fr.eni.gestion_parking.dal.PersonneDAO;
@@ -21,8 +20,8 @@ public class PersonneManager {
 
     private static final Logger logger = MonLogger.getLogger(PersonneManager.class.getSimpleName());
     private static volatile PersonneManager instance;
-    private PersonneDAO personneDAO;
-    private VoitureDAO voitureDAO;
+    private final PersonneDAO personneDAO;
+    private final VoitureDAO voitureDAO;
 
     /**
      * Constructeur CatalogueManager
@@ -43,9 +42,9 @@ public class PersonneManager {
     }
 
     /**
-     * Retourne le liste des personnes
+     * Retourne la liste des personnes
      * @return liste des personnes
-     * @throws BLLException
+     * @throws BLLException la BLLException
      */
     public List<Personne> getListPersonne() throws BLLException {
         try {
@@ -58,9 +57,9 @@ public class PersonneManager {
     }
 
     /**
-     * Retourne le liste des personnes sans voitures
+     * Retourne la liste des personnes sans voitures
      * @return liste des personnes
-     * @throws BLLException
+     * @throws BLLException la BLLException
      */
     public List<Personne> getListPersonneWithoutVoiture() throws BLLException {
         try {
@@ -73,10 +72,10 @@ public class PersonneManager {
     }
 
     /**
-     * Ajouter une personnes
+     * Ajouter une personne
      * @param personne la personne à ajouter
      * @return la personne ajoutée
-     * @throws BLLException
+     * @throws BLLException la BLLException
      */
     public Personne addPersonne(final Personne personne) throws BLLException {
         try {
@@ -86,7 +85,7 @@ public class PersonneManager {
             if (personne.getId() != null) {
                 String error = "La personne est déjà présente en base de données";
                 logger.severe(error);
-                throw new BLLException(error, BLLExceptionType.ERROR_PERSONNE_PRESENTE_BASE);
+                throw new BLLException(error, BLLExceptionType.ERROR_PERSONNE_PRESENT_BASE);
             }
             return personneDAO.insert(personne);
         } catch (DALException e) {
@@ -99,7 +98,7 @@ public class PersonneManager {
      * Modifier une personne
      * @param personne la personne à modifier
      * @return la personne modifier
-     * @throws BLLException
+     * @throws BLLException la BLLException
      */
     public Personne updatePersonne(final Personne personne) throws BLLException {
         try {
@@ -109,7 +108,7 @@ public class PersonneManager {
             if (personne.getId() == null) {
                 String error = "La personne n'est pas présente en base de données";
                 logger.severe(error);
-                throw new BLLException(error, BLLExceptionType.ERROR_PERSONNE_NON_PRESENTE_BASE);
+                throw new BLLException(error, BLLExceptionType.ERROR_PERSONNE_NON_PRESENT_BASE);
             }
 
             return personneDAO.update(personne);
@@ -123,7 +122,7 @@ public class PersonneManager {
      * Supprimer une personne
      * @param personne la personne
      * @return true -> Supprimer; false -> Erreur
-     * @throws BLLException
+     * @throws BLLException la BLLException
      */
     public boolean deletePersonnse(final Personne personne) throws BLLException {
         try {
@@ -133,7 +132,7 @@ public class PersonneManager {
             if (personne.getId() == null) {
                 String error = "La personne n'est pas présente en base de données";
                 logger.severe(error);
-                throw new BLLException(error, BLLExceptionType.ERROR_PERSONNE_NON_PRESENTE_BASE);
+                throw new BLLException(error, BLLExceptionType.ERROR_PERSONNE_NON_PRESENT_BASE);
             }
 
             if (voitureDAO.selectAll().stream().anyMatch(voiture -> voiture.getPersonne() != null && Objects.equals(voiture.getPersonne().getId(), personne.getId()))) {
@@ -153,17 +152,17 @@ public class PersonneManager {
     /**
      * Valide une personne avant n'import quelle requête
      * @param personne la personne à valider
-     * @throws BLLException
+     * @throws BLLException la BLLException
      */
     private void validerPersonne(Personne personne) throws BLLException {
         logger.info("PersonneManager --> validerPersonne");
         if (personne.getNom() == null || personne.getNom().isBlank()) {
-            String error = "Le nom d'une personne ne peut pas être vide ou initilisé à rien";
+            String error = "Le nom d'une personne ne peut pas être vide ou initialisée à rien";
             logger.severe(error);
             throw new BLLException(error, BLLExceptionType.ERROR_PERSONNE_NOM_VIDE);
         }
         if (personne.getPrenom() == null || personne.getPrenom().isBlank()) {
-            String error = "Le prenom d'une personne ne peut pas être vide ou initilisé à rien";
+            String error = "Le prenom d'une personne ne peut pas être vide ou initialisée à rien";
             logger.severe(error);
             throw new BLLException(error, BLLExceptionType.ERROR_PERSONNE_PRENOM_VIDE);
         }
